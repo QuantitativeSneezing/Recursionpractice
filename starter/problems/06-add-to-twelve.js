@@ -11,8 +11,21 @@ addToTwelve([1, 11, 4, 7, 6]); // true
 addToTwelve([1, 12, 4, 7, 6]); // false
 addToTwelve([1]); // false
 ***********************************************************************/
-
+function addToTwelve (array){
+if (array.length<=1){
+  return false;
+}
+if (array[0]+array[1]===12){
+  return true;
+}
+return (addToTwelve(array.slice(1)));
+}
 // your code here
+console.log( addToTwelve([1, 3, 4, 7, 5]), // true
+addToTwelve([1, 3, 4, 7, 6]), // false
+addToTwelve([1, 11, 4, 7, 6]), // true
+addToTwelve([1, 12, 4, 7, 6]), // false
+addToTwelve([1])) // false
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
