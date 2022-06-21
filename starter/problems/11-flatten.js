@@ -10,22 +10,42 @@ flatten([1, 2]); // [1, 2]
 flatten([1, [2, [3]]]); // [1, 2, 3]
 ***********************************************************************/
 
-function flatten(arr) {
-  let newArr = [];
-//   if (arr.length === 0) {
-//     return [];
-//   }
 
-//  if (arr.length > 0) {
-//   if (Array.isArray(arr[0])) {
-//     debugger
-//     newArr.concat(...flatten(arr[0]));
-//   } else {
-//     debugger
-//     newArr.push(arr.shift())
-//   }
-//  }
+/*
+ while (arr.length > 0) {
+  let newVar = arr[0];
+  if (Array.isArray(newVar)) {
+    console.log(newVar)
+    newArr.concat(...flatten(newVar));
+  } else {
+    debugger
+    newArr.push(arr.shift())
+    newVar = arr[0];
+    console.log(newVar)
+  }
+ }
+*/
 
+function flatten(arr, newArr = []) {
+
+  if (!arr.length) {
+    return newArr;
+  }
+
+  let variable = arr.shift();
+
+  if (Array.isArray(variable)) {
+    newArr.push(...flatten(variable));
+  } else {
+    newArr.push(variable);
+  }
+
+  return flatten(arr, newArr)
+
+}
+
+
+/*
  arr.forEach(function (contents) {
   if (Array.isArray(contents)) {
     newArr.push(...flatten(contents));
@@ -33,9 +53,8 @@ function flatten(arr) {
     newArr.push(contents);
   }
  });
+*/
 
-  return newArr;
-}
 
 
 console.log(flatten([])); // []
